@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DadFit OS — Your Fitness Operating System</title>
+<style>
+:root{--bg:#0b0d10;--panel:#13171c;--panel2:#1a2027;--text:#f5f7fa;--muted:#a8b0ba;--accent:#d7ff55;--line:#2a3139;--danger:#ff8f8f}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}
+button,input,select{font:inherit}.hidden{display:none!important}.container{max-width:1180px;margin:auto;padding:0 24px}
+nav{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.logo{font-weight:900;letter-spacing:-.04em;font-size:22px}.pill{font-size:12px;border:1px solid var(--line);padding:7px 11px;border-radius:999px;color:var(--muted)}
+.hero{padding:92px 0 72px;display:grid;grid-template-columns:1.15fr .85fr;gap:55px;align-items:center}
+h1{font-size:clamp(46px,6vw,78px);line-height:.98;letter-spacing:-.06em;margin:0 0 24px}
+h2{font-size:34px;letter-spacing:-.04em;margin:0 0 10px}h3{margin:0 0 8px}
+.lead{font-size:20px;line-height:1.55;color:var(--muted);max-width:680px}
+.cta{background:var(--accent);color:#0b0d10;border:0;border-radius:12px;padding:16px 22px;font-weight:900;cursor:pointer}
+.secondary{background:transparent;color:var(--text);border:1px solid var(--line);border-radius:12px;padding:15px 20px;cursor:pointer}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.hero-card,.card{background:var(--panel);border:1px solid var(--line);border-radius:20px}
+.hero-card{padding:26px}.price{font-size:48px;font-weight:900;letter-spacing:-.05em}.small{color:var(--muted);font-size:14px}
+.checks{padding:0;margin:22px 0;list-style:none}.checks li{padding:10px 0;border-bottom:1px solid var(--line)}
+.section{padding:72px 0;border-top:1px solid var(--line)}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{padding:22px}
+.icon{font-size:26px;margin-bottom:14px}.muted{color:var(--muted);line-height:1.55}
+#app{min-height:100vh}.app-shell{display:grid;grid-template-columns:230px 1fr;min-height:100vh}
+.sidebar{border-right:1px solid var(--line);padding:24px;position:sticky;top:0;height:100vh}
+.side-btn{width:100%;text-align:left;background:none;color:var(--muted);border:0;padding:11px 10px;border-radius:9px;cursor:pointer;margin:2px 0}
+.side-btn.active,.side-btn:hover{background:var(--panel2);color:var(--text)}
+.main{padding:30px;max-width:1250px;width:100%}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.stat{padding:18px;background:var(--panel);border:1px solid var(--line);border-radius:14px}.stat b{font-size:25px}
+.content-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:16px;margin-top:16px}
+.row{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.progress{height:8px;background:#272e36;border-radius:999px;overflow:hidden}.progress>span{display:block;height:100%;width:78%;background:var(--accent)}
+.chat{height:430px;display:flex;flex-direction:column}.messages{flex:1;overflow:auto}.msg{padding:12px 14px;border-radius:13px;margin:8px 0;max-width:88%;line-height:1.45}.ai{background:var(--panel2)}.me{background:#253027;margin-left:auto}.chatbar{display:flex;gap:8px;margin-top:12px}.chatbar input{flex:1;background:#0e1216;border:1px solid var(--line);color:var(--text);padding:12px;border-radius:10px}
+.onboard{max-width:760px;margin:60px auto}.step{font-size:13px;color:var(--muted);margin-bottom:10px}.question{font-size:34px;letter-spacing:-.04em;margin-bottom:20px}.option-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.option{padding:16px;border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:12px;text-align:left;cursor:pointer}.option.selected{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+@media(max-width:850px){.hero{grid-template-columns:1fr}.grid,.stats{grid-template-columns:1fr 1fr}.app-shell{grid-template-columns:1fr}.sidebar{height:auto;position:static;border-right:0;border-bottom:1px solid var(--line);display:flex;overflow:auto;gap:5px}.sidebar .logo{display:none}.side-btn{white-space:nowrap;width:auto}.content-grid{grid-template-columns:1fr}}
+@media(max-width:560px){.grid,.stats,.option-grid{grid-template-columns:1fr}.main{padding:20px}.hero{padding-top:55px}.hero-card{padding:20px}}
+</style>
+</head>
+<body>
+<div id="marketing">
+  <div class="container">
+    <nav><div class="logo">DADFIT OS</div><div class="pill">Lifetime Access • $1,595</div></nav>
+    <section class="hero">
+      <div>
+        <div class="pill" style="display:inline-block;margin-bottom:18px">Built for busy dads</div>
+        <h1>Your fitness.<br>Built around your life.</h1>
+        <p class="lead">DadFit OS is an AI-powered fitness operating system designed for fathers who want to get leaner, stronger and more energetic without spending their lives in the gym.</p>
+        <div class="actions"><button class="cta" onclick="startCheckout()">Get Lifetime Access — $1,595</button><button class="secondary" onclick="demo()">See the Demo</button></div>
+      </div>
+      <div class="hero-card">
+        <div class="small">YOUR PERSONAL OS</div>
+        <h2 style="margin-top:8px">Today, Dad.</h2>
+        <div class="row"><span>🏋️ Workout</span><b>27 min</b></div>
+        <div class="row"><span>🥩 Protein</span><b>185g</b></div>
+        <div class="row"><span>🚶 Steps</span><b>7,800 / 9,000</b></div>
+        <div class="row"><span>😴 Sleep</span><b>7h 12m</b></div>
+        <p class="small" style="margin-top:18px">“I only have 20 minutes today.”</p>
+        <div class="card" style="background:var(--panel2);padding:14px">DadFit adjusts your plan instead of asking you to abandon it.</div>
+      </div>
+    </section>
+    <section class="section">
+      <h2>Everything a busy dad needs to stay on track.</h2>
+      <p class="lead" style="font-size:17px">One system that adapts to work, kids, travel, restaurants and real life.</p>
+      <div class="grid" style="margin-top:24px">
+        <div class="card"><div class="icon">🏋️</div><h3>Training OS</h3><p class="muted">Personalized sessions based on time, equipment, experience and progress.</p></div>
+        <div class="card"><div class="icon">🥩</div><h3>Nutrition OS</h3><p class="muted">Daily targets and practical food decisions that fit family life.</p></div>
+        <div class="card"><div class="icon">🍔</div><h3>Restaurant Mode</h3><p class="muted">Know what to order without turning dinner into a diet lecture.</p></div>
+        <div class="card"><div class="icon">✈️</div><h3>Travel Mode</h3><p class="muted">Hotel workouts, airport food and travel-day adjustments.</p></div>
+        <div class="card"><div class="icon">👨‍👧‍👦</div><h3>Dad Mode</h3><p class="muted">Stay active without sacrificing family time.</p></div>
+        <div class="card"><div class="icon">🤖</div><h3>Ask DadFit</h3><p class="muted">A personalized AI coach available whenever life gets complicated.</p></div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="hero-card" style="display:flex;justify-content:space-between;gap:30px;align-items:center;flex-wrap:wrap">
+        <div><div class="small">ONE-TIME PURCHASE</div><div class="price">$1,595</div><p class="muted">Lifetime platform access. No monthly software subscription.</p></div>
+        <div><ul class="checks"><li>✓ Personalized DadFit OS</li><li>✓ AI coaching & decision support</li><li>✓ Training + nutrition systems</li><li>✓ Restaurant + travel modes</li><li>✓ Progress tracking</li></ul><button class="cta" onclick="startCheckout()">Get Lifetime Access</button></div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div id="onboarding" class="hidden">
+  <div class="container">
+    <nav><div class="logo">DADFIT OS</div><div class="pill" id="stepPill">Step 1 of 5</div></nav>
+    <div class="onboard">
+      <div class="step" id="stepLabel">PROFILE</div>
+      <div class="question" id="question">What's your primary goal?</div>
+      <div class="option-grid" id="options"></div>
+      <div class="actions"><button class="secondary" onclick="backStep()">Back</button><button class="cta" onclick="nextStep()">Continue</button></div>
+    </div>
+  </div>
+</div>
+
+<div id="app" class="hidden">
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="logo" style="margin-bottom:22px">DADFIT OS</div>
+      <button class="side-btn active" data-page="home">🏠 Today</button>
+      <button class="side-btn" data-page="training">🏋️ Training</button>
+      <button class="side-btn" data-page="nutrition">🥩 Nutrition</button>
+      <button class="side-btn" data-page="restaurant">🍔 Restaurant</button>
+      <button class="side-btn" data-page="travel">✈️ Travel</button>
+      <button class="side-btn" data-page="progress">📈 Progress</button>
+      <button class="side-btn" data-page="coach">🤖 Ask DadFit</button>
+      <button class="side-btn" onclick="logout()" style="margin-top:20px">Log out</button>
+    </aside>
+    <main class="main">
+      <div id="page"></div>
+    </main>
+  </div>
+</div>
+
+<script>
+const state={paid:false,step:0,answers:{},page:'home'};
+const steps=[
+ {label:'GOAL',q:'What do you want DadFit to help you accomplish?',opts:['Lose fat','Build muscle','Recomp','Improve energy']},
+ {label:'TIME',q:'How much time can you realistically train?',opts:['15–20 minutes','25–30 minutes','35–45 minutes','45–60 minutes']},
+ {label:'EQUIPMENT',q:'Where do you train most often?',opts:['Full gym','Home gym','Dumbbells / bands','Bodyweight']},
+ {label:'LIFESTYLE',q:'What gets in the way most often?',opts:['Work schedule','Kids / family','Travel','Food / restaurants']},
+ {label:'FOOD',q:'How often do you eat meals outside the home?',opts:['Rarely','1–2 times/week','3–5 times/week','Most days']}
+];
+function startCheckout(){
+  // Production: replace this demo with a Stripe Checkout session.
+  alert('Demo checkout: In production this button creates a Stripe Checkout Session for $1,595, then returns the customer here after successful payment.');
+  state.paid=true; showOnboarding();
+}
+function demo(){state.paid=true;showOnboarding();}
+function showOnboarding(){document.getElementById('marketing').classList.add('hidden');document.getElementById('onboarding').classList.remove('hidden');renderStep();}
+function renderStep(){let s=steps[state.step];document.getElementById('stepPill').textContent=`Step ${state.step+1} of ${steps.length}`;document.getElementById('stepLabel').textContent=s.label;document.getElementById('question').textContent=s.q;let el=document.getElementById('options');el.innerHTML='';s.opts.forEach(o=>{let b=document.createElement('button');b.className='option'+(state.answers[state.step]===o?' selected':'');b.textContent=o;b.onclick=()=>{state.answers[state.step]=o;renderStep()};el.appendChild(b)})}
+function nextStep(){if(!state.answers[state.step]){alert('Choose an option first.');return}if(state.step<steps.length-1){state.step++;renderStep()}else{showApp()}}
+function backStep(){if(state.step>0){state.step--;renderStep()}else{document.getElementById('onboarding').classList.add('hidden');document.getElementById('marketing').classList.remove('hidden')}}
+function showApp(){document.getElementById('onboarding').classList.add('hidden');document.getElementById('app').classList.remove('hidden');renderPage()}
+function logout(){state.paid=false;state.step=0;state.answers={};document.getElementById('app').classList.add('hidden');document.getElementById('marketing').classList.remove('hidden')}
+document.querySelectorAll('.side-btn[data-page]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.side-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');state.page=b.dataset.page;renderPage()}));
+function shell(title,sub,body){return `<div class="top"><div><div class="small">DADFIT OS</div><h2>${title}</h2><div class="small">${sub}</div></div><div class="pill">Lifetime Member</div></div>${body}`}
+function renderPage(){
+let p=state.page, html='';
+if(p==='home') html=shell('Good evening, Dad.','Here is your plan for today.',`
+<div class="stats"><div class="stat"><div class="small">CALORIES</div><b>2,350</b></div><div class="stat"><div class="small">PROTEIN</div><b>185g</b></div><div class="stat"><div class="small">STEPS</div><b>7,800</b></div><div class="stat"><div class="small">DADFIT SCORE</div><b>84</b></div></div>
+<div class="content-grid"><div class="card"><div class="small">TODAY'S WORKOUT</div><h3 style="font-size:24px;margin-top:8px">27-Minute Full Body</h3><p class="muted">Built around your available time and current training plan.</p><div class="row"><span>Goblet Squat</span><b>3 × 10</b></div><div class="row"><span>DB Bench Press</span><b>3 × 10</b></div><div class="row"><span>Lat Pulldown</span><b>3 × 12</b></div><div class="row"><span>Romanian Deadlift</span><b>2 × 10</b></div><button class="cta" style="margin-top:16px" onclick="state.page='training';renderPage()">Start Workout</button></div>
+<div class="card"><div class="small">QUICK DECISION</div><h3 style="font-size:22px;margin-top:8px">Life happened?</h3><p class="muted">DadFit adapts instead of asking you to start over.</p><button class="secondary" style="width:100%;margin-top:10px" onclick="alert('Demo: DadFit would ask your available time and regenerate the session.')">I only have 15 minutes</button><button class="secondary" style="width:100%;margin-top:10px" onclick="alert('Demo: DadFit would switch you into Restaurant Mode.')">We're eating out tonight</button></div></div>`);
+else if(p==='training') html=shell('Training OS','Your program adapts to time, equipment and progress.',`<div class="grid"><div class="card"><div class="small">TODAY</div><h3>27-Minute Full Body</h3><p class="muted">4 movements • 11 working sets</p><button class="cta" onclick="alert('Demo workout started')">Start</button></div><div class="card"><div class="small">TIME MACHINE</div><h3>Only 15 minutes?</h3><p class="muted">DadFit compresses the session while preserving the training priority.</p><button class="secondary" onclick="alert('Demo: 15-minute version generated')">Generate</button></div><div class="card"><div class="small">TRAVEL</div><h3>No equipment?</h3><p class="muted">Switch to bodyweight or hotel-gym mode.</p><button class="secondary" onclick="alert('Demo: travel session generated')">Switch</button></div></div>`);
+else if(p==='nutrition') html=shell('Nutrition OS','Make the next good decision—not the perfect one.',`<div class="stats"><div class="stat"><div class="small">TARGET</div><b>2,350</b></div><div class="stat"><div class="small">EATEN</div><b>1,420</b></div><div class="stat"><div class="small">PROTEIN</div><b>121g</b></div><div class="stat"><div class="small">LEFT</div><b>930</b></div></div><div class="card" style="margin-top:16px"><h3>Ask DadFit</h3><p class="muted">“I have 900 calories left and my family wants tacos tonight. What should I do?”</p><button class="cta" onclick="state.page='coach';renderPage()">Ask DadFit</button></div>`);
+else if(p==='restaurant') html=shell('Restaurant Mode','Stay on plan without eating a separate meal from your family.',`<div class="card"><h3>Where are you eating?</h3><div class="option-grid" style="margin-top:15px"><button class="option" onclick="alert('Demo: show practical choices')">🍔 Burger place</button><button class="option" onclick="alert('Demo: show practical choices')">🌮 Mexican</button><button class="option" onclick="alert('Demo: show practical choices')">🍣 Sushi</button><button class="option" onclick="alert('Demo: show practical choices')">🍕 Pizza</button></div></div>`);
+else if(p==='travel') html=shell('Travel Mode','Keep momentum when your routine disappears.',`<div class="card"><h3>3-Day Business Trip</h3><div class="row"><span>Hotel workout</span><b>25 min</b></div><div class="row"><span>Daily movement</span><b>8,500 steps</b></div><div class="row"><span>Breakfast strategy</span><b>Protein first</b></div><div class="row"><span>Airport strategy</span><b>2 options saved</b></div><button class="cta" style="margin-top:16px" onclick="alert('Demo travel plan created')">Build My Trip</button></div>`);
+else if(p==='progress') html=shell('Progress OS','Consistency first. Results follow.',`<div class="content-grid"><div class="card"><div class="small">WEIGHT TREND</div><h3>218 → 211.6 lb</h3><div class="progress" style="margin:18px 0"><span style="width:62%"></span></div><p class="muted">Down 6.4 lb since starting. Trend is moving in the intended direction.</p></div><div class="card"><div class="small">THIS WEEK</div><div class="row"><span>Workouts</span><b>4 / 4</b></div><div class="row"><span>Nutrition</span><b>82%</b></div><div class="row"><span>Steps</span><b>91%</b></div><div class="row"><span>Sleep</span><b>86%</b></div></div></div>`);
+else html=shell('Ask DadFit','Your AI coach for real-life decisions.',`<div class="card chat"><div class="messages" id="messages"><div class="msg ai"><b>DadFit:</b> Tell me what happened today. I'll help you decide what to do next.</div></div><div class="chatbar"><input id="chatInput" placeholder="e.g. I only have 20 minutes tonight…"><button class="cta" onclick="sendChat()">Send</button></div></div>`);
+document.getElementById('page').innerHTML=html
+}
+function sendChat(){let input=document.getElementById('chatInput');if(!input||!input.value.trim())return;let v=input.value;let m=document.getElementById('messages');m.innerHTML+=`<div class="msg me">${v.replace(/</g,'&lt;')}</div><div class="msg ai"><b>DadFit:</b> Demo response: I'd use your goals, schedule, training history and nutrition targets to create the best next action. In production, this message will be generated by your DadFit methodology + AI backend.</div>`;input.value='';m.scrollTop=m.scrollHeight}
+</script>
+</body>
+</html>
